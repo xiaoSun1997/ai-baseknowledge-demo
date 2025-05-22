@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG检索增强生成 - AI核心概念科普</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800" id="rag-page">
+<header class="bg-white shadow-sm border-b border-gray-200 fixed w-full z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex-shrink-0 flex items-center">
+        <h1 class="text-xl font-bold text-gray-900">AI核心概念科普</h1>
+      </div>
+      <nav class="hidden md:flex space-x-6" id="main-nav">
+        <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">首页</a>
+        <a href="rag.html" class="text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium">RAG检索增强生成</a>
+        <a href="function-calling.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">函数调用</a>
+        <a href="model-context-protocol.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">模型上下文管理</a>
+        <a href="ai-agent.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">AI智能体</a>
+        <a href="embodied-agent.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">具身智能体</a>
+        <a href="conclusion.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">总结展望</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <a href="index.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">首页</a>
+      <a href="rag.html" class="block text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md text-base font-medium">RAG检索增强生成</a>
+      <a href="function-calling.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">函数调用</a>
+      <a href="model-context-protocol.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">模型上下文管理</a>
+      <a href="ai-agent.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">AI智能体</a>
+      <a href="embodied-agent.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">具身智能体</a>
+      <a href="conclusion.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">总结展望</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+  <article>
+    <header class="mb-10">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">RAG检索增强生成</h1>
+      <p class="text-xl text-gray-600">让大语言模型获取外部知识的现代技术框架</p>
+    </header>
+
+    <div class="article-toc bg-white shadow rounded-lg p-6 mb-8">
+      <h4 class="font-medium text-gray-900 mb-4">目录</h4>
+      <ul class="space-y-2">
+        <li><a href="#definition" class="text-gray-600 hover:text-blue-600">1. 核心定义与基本原理</a></li>
+        <li><a href="#naive-rag" class="text-gray-600 hover:text-blue-600">2. 朴素RAG</a></li>
+        <li><a href="#advanced-rag" class="text-gray-600 hover:text-blue-600">3. 高级RAG</a></li>
+        <li><a href="#modular-rag" class="text-gray-600 hover:text-blue-600">4. 模块化RAG</a></li>
+        <li><a href="#evolution" class="text-gray-600 hover:text-blue-600">5. RAG演化路径总结</a></li>
+        <li><a href="#demo" class="text-gray-600 hover:text-blue-600">6. 演示案例</a></li>
+      </ul>
+    </div>
+
+    <div class="bg-white shadow rounded-lg overflow-hidden">
+      <div id="article-container" class="article-content p-8">
+        <!-- 内容将通过JavaScript加载 -->
+        <div class="animate-pulse space-y-4">
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+          <div class="h-4 bg-gray-200 rounded"></div>
+          <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+          <div class="h-40 bg-gray-200 rounded"></div>
+          <div class="h-4 bg-gray-200 rounded"></div>
+          <div class="h-4 bg-gray-200 rounded w-4/6"></div>
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 演示部分 -->
+    <div id="rag-demo" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+      <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-gray-900">RAG演示: 企业知识库问答</h3>
+            <button class="close-demo text-gray-500 hover:text-gray-700">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="demo-content space-y-4">
+            <!-- 演示内容将在代码中插入 -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="bg-gray-100 border-t border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <p class="text-center text-gray-500 text-sm">
+      © 2024 AI核心概念科普 - 从RAG到具身智能体。本站内容仅用于教育目的。
+    </p>
+  </div>
+</footer>
+
+<script src="navigation.js"></script>
+<script src="rag-content.js"></script>
+<script src="scripts.js"></script>
+</body>
+</html>

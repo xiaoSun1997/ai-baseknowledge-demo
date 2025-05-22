@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI核心概念科普 - 从RAG到具身智能体</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<header class="bg-white shadow-sm border-b border-gray-200 fixed w-full z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex-shrink-0 flex items-center">
+        <h1 class="text-xl font-bold text-gray-900">AI核心概念科普</h1>
+      </div>
+      <nav class="hidden md:flex space-x-6" id="main-nav">
+        <a href="index.html" class="text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium">首页</a>
+        <a href="rag.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">RAG检索增强生成</a>
+        <a href="function-calling.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">函数调用</a>
+        <a href="model-context-protocol.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">模型上下文管理</a>
+        <a href="ai-agent.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">AI智能体</a>
+        <a href="embodied-agent.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">具身智能体</a>
+        <a href="conclusion.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">总结展望</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <a href="index.html" class="block text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md text-base font-medium">首页</a>
+      <a href="rag.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">RAG检索增强生成</a>
+      <a href="function-calling.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">函数调用</a>
+      <a href="model-context-protocol.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">模型上下文管理</a>
+      <a href="ai-agent.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">AI智能体</a>
+      <a href="embodied-agent.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">具身智能体</a>
+      <a href="conclusion.html" class="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">总结展望</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+  <section class="text-center mb-12">
+    <h2 class="text-4xl font-bold mb-6 text-gray-900">人工智能核心概念科普</h2>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto">从RAG到具身智能体，探索AI革命背后的关键技术</p>
+  </section>
+
+  <section class="bg-white shadow rounded-lg overflow-hidden mb-12">
+    <div class="p-8">
+      <h3 class="text-2xl font-bold mb-4 text-gray-900">引言：人工智能新兴概念的重要性</h3>
+      <p class="text-gray-600 mb-6">
+        人工智能技术正在以前所未有的速度发展，大型语言模型（LLM）的出现标志着AI进入了一个新时代。
+        然而，要充分发挥这些模型的潜力，研究者和工程师们不断探索新的架构和方法，
+        以解决LLM面临的知识有限、能力受限等问题。本文将深入探讨五个关键的AI新兴概念，
+        它们共同构成了当代AI系统的核心技术框架。
+      </p>
+      <p class="text-gray-600">
+        这些概念不仅代表了AI领域的前沿发展，更是未来AI应用的基础设施。无论你是AI研究者、
+        开发者，还是对AI技术感兴趣的普通读者，了解这些概念将帮助你理解当前AI技术的发展方向，
+        以及它们如何塑造我们的未来。
+      </p>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+    <!-- RAG卡片 -->
+    <div class="bg-white shadow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <img src="https://www.nvidia.cn/content/nvidiaGDC/cn/zh_CN/glossary/retrieval-augmented-generation/_jcr_content/root/responsivegrid/nv_container_6840787/nv_image.coreimg.100.1070.png/1725282254025/rag-diagram-1920x1080.png"
+           alt="RAG检索增强生成示意图"
+           class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-900">RAG检索增强生成</h3>
+        <p class="text-gray-600 mb-4">
+          RAG技术让大语言模型能够引用外部知识源，解决模型知识有限和幻觉问题，
+          从朴素RAG到高级RAG再到模块化RAG，展现了AI检索与生成技术的演进历程。
+        </p>
+        <a href="rag.html" class="text-blue-600 hover:text-blue-800 font-medium">
+          了解更多 →
+        </a>
+      </div>
+    </div>
+
+    <!-- 函数调用卡片 -->
+    <div class="bg-white shadow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <img src="https://default-1251581354.cos.ap-beijing.myqcloud.com/temp/THZ-IT/llm/function-calling.png"
+           alt="Function Calling流程图"
+           class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-900">函数调用</h3>
+        <p class="text-gray-600 mb-4">
+          Function Calling让AI模型能够识别何时需要调用外部函数，并生成符合格式的参数，
+          实现AI与外部工具和API的无缝集成，大幅扩展模型的能力边界。
+        </p>
+        <a href="function-calling.html" class="text-blue-600 hover:text-blue-800 font-medium">
+          了解更多 →
+        </a>
+      </div>
+    </div>
+
+    <!-- 模型上下文管理卡片 -->
+    <div class="bg-white shadow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <img src="img/img.png"
+           alt="模型上下文管理示意图"
+           class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-900">模型上下文管理</h3>
+        <p class="text-gray-600 mb-4">
+          MCP提供了标准化的方式来管理大模型的上下文信息，解决了长对话历史保存、用户意图理解、
+          身份认证等问题，为AI系统提供了统一的上下文管理框架。
+        </p>
+        <a href="model-context-protocol.html" class="text-blue-600 hover:text-blue-800 font-medium">
+          了解更多 →
+        </a>
+      </div>
+    </div>
+
+    <!-- AI智能体卡片 -->
+    <div class="bg-white shadow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <img src="img/1 (2).png"
+           alt="AI智能体架构图"
+           class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-900">AI智能体</h3>
+        <p class="text-gray-600 mb-4">
+          AI智能体（Agent）将大语言模型与规划能力、记忆机制和工具使用能力相结合，
+          能够自主完成复杂任务，代表了AI从静态回答问题到动态解决问题的进化。
+        </p>
+        <a href="ai-agent.html" class="text-blue-600 hover:text-blue-800 font-medium">
+          了解更多 →
+        </a>
+      </div>
+    </div>
+
+    <!-- 具身智能体卡片 -->
+    <div class="bg-white shadow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <img src="https://www.bigai.ai/wp-content/uploads/2023/08/image-49.png"
+           alt="具身智能体示例"
+           class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-900">具身智能体</h3>
+        <p class="text-gray-600 mb-4">
+          具身智能体将AI算法与物理或虚拟"身体"相结合，使智能体能够感知现实环境并与之交互，
+          代表了AI向更高层次的环境适应能力和自主性的发展。
+        </p>
+        <a href="embodied-agent.html" class="text-blue-600 hover:text-blue-800 font-medium">
+          了解更多 →
+        </a>
+      </div>
+    </div>
+
+    <!-- 概念关联卡片 -->
+    <div class="bg-white shadow rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <div class="p-6 flex flex-col justify-center h-full">
+        <h3 class="text-xl font-bold mb-2 text-gray-900">概念关联与未来展望</h3>
+        <p class="text-gray-600 mb-4">
+          这五大概念不是孤立存在的，它们相互关联、相互增强，共同构成了现代AI系统的技术基石。
+          了解它们之间的联系，以及它们共同指向的未来发展方向。
+        </p>
+        <a href="conclusion.html" class="text-blue-600 hover:text-blue-800 font-medium mt-auto">
+          了解更多 →
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-gray-100 border-t border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <p class="text-center text-gray-500 text-sm">
+      © 2024 AI核心概念科普 - 从RAG到具身智能体。本站内容仅用于教育目的。
+    </p>
+  </div>
+</footer>
+
+<script src="navigation.js"></script>
+</body>
+</html>
